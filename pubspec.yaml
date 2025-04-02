@@ -1,7 +1,9 @@
 name: bottom_navigation
-description: "A new Flutter package project."
+description: "A Flutter package providing a customizable bottom navigation bar with badge support, built with flutter_bloc for efficient state management."
 version: 0.0.1
-homepage:
+homepage: https://github.com/GenieCoderSrc/bottom_navigation
+repository: https://github.com/GenieCoderSrc/bottom_navigation
+issue_tracker: https://github.com/GenieCoderSrc/bottom_navigation/issues
 
 environment:
   sdk: ^3.6.1
@@ -10,7 +12,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-    
+  fluttertoast: ^8.2.10
   flutter_bloc: ^9.0.0
   
 dev_dependencies:
@@ -24,6 +26,8 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
 
+example:
+  path: example
   # To add assets to your package, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
