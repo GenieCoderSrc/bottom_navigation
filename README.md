@@ -1,19 +1,21 @@
-# styles
+# bottom_navigation
 
-A Flutter package providing a customizable bottom navigation bar with badge support using Flutter Bloc.
+A Flutter package that provides a reusable and customizable bottom navigation bar with badge support. Ideal for apps that require a dynamic bottom navigation bar with items that may have badges (e.g., unread notifications).
 
 ## Features
-- Custom bottom navigation bar with icon and label support
-- Badge functionality for navigation items
-- State management using Flutter Bloc
-- Reusable components for consistent UI design
+
+- **Customizable Bottom Navigation Bar**: Allows users to define their own navigation items with icons and labels.
+- **Badge Support**: Add a badge to each bottom navigation item, useful for notifications, unread messages, or other indicators.
+- **Bloc-based State Management**: Uses the `flutter_bloc` package to manage navigation index and badge counts.
+- **Easy Integration**: Simple API to use the package in any Flutter app.
 
 ## Installation
-Add the following dependency in your `pubspec.yaml`:
+
+Add the following dependency to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  styles: latest_version
+  bottom_navigation: ^1.0.0 # Check for the latest version on pub.dev
 ```
 
 Then, run:
@@ -61,6 +63,17 @@ class MyApp extends StatelessWidget {
 ```dart
 context.read<BadgeCountCubit>().updateBadgeCount('notifications', 5);
 ```
+
+
+### Key Points:
+
+1. **Installation**: Clear steps to add the package to `pubspec.yaml`.
+2. **Usage**: Basic examples of how to use `BottomNavScaffold`, `BadgeCountCubit`, `CustomBottomNavBar`, and `AppBadge`.
+3. **Customizations**: Shows how users can customize the navigation bar and badge behavior.
+4. **License**: Mentions the MIT license (adjust if you're using a different license).
+
+This should help users understand how to integrate and use the package in their own projects. Let me know if you'd like to add or change anything!
+
 
 ## Example
 For a complete implementation, check the `example/` directory.
