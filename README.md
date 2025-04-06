@@ -15,7 +15,7 @@ Add the following dependency to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  bottom_navigation: ^1.0.0 # Check for the latest version on pub.dev
+  bottom_navigation: ^0.0.2 # Check for the latest version on pub.dev
 ```
 
 Then, run:
