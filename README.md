@@ -1,83 +1,124 @@
 # bottom_navigation
 
-A Flutter package that provides a reusable and customizable bottom navigation bar with badge support. Ideal for apps that require a dynamic bottom navigation bar with items that may have badges (e.g., unread notifications).
+A customizable and badge-supported bottom navigation bar for Flutter using Bloc state management. This package provides a reusable scaffold (`BottomNavScaffold`) and navigation bar (`CustomBottomNavBar`) with dynamic badge capabilities.
+
+---
 
 ## Features
 
-- **Customizable Bottom Navigation Bar**: Allows users to define their own navigation items with icons and labels.
-- **Badge Support**: Add a badge to each bottom navigation item, useful for notifications, unread messages, or other indicators.
-- **Bloc-based State Management**: Uses the `flutter_bloc` package to manage navigation index and badge counts.
-- **Easy Integration**: Simple API to use the package in any Flutter app.
+- ✨ Easy setup for BottomNavigationBar
+- ⚡ State management with `flutter_bloc`
+- 📅 Badge support for each navigation item
+- ⚖ Fully customizable colors and styling
+- 📊 Decoupled, modular structure
+
+---
 
 ## Installation
 
-Add the following dependency to your `pubspec.yaml` file:
+Add this to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  bottom_navigation: ^0.0.2 # Check for the latest version on pub.dev
+  bottom_navigation: ^0.0.1
 ```
 
-Then, run:
-```sh
+Then run:
+
+```bash
 flutter pub get
 ```
 
-## Usage
-### Import the package:
-```dart
-import 'package:styles/styles.dart';
-```
+---
 
-### Define Navigation Items:
+## Usage
+
+### 1. Create NavBar Items
+
 ```dart
-List<NavBarItem> navBarItems = [
+final items = [
   NavBarItem(icon: Icons.home, label: 'Home', badgeKey: 'home'),
-  NavBarItem(icon: Icons.notifications, label: 'Notifications', badgeKey: 'notifications'),
+  NavBarItem(icon: Icons.notifications, label: 'Alerts', badgeKey: 'alerts'),
   NavBarItem(icon: Icons.settings, label: 'Settings', badgeKey: 'settings'),
 ];
 ```
 
-### Implement `BottomNavScaffold`:
+### 2. Provide Pages
+
 ```dart
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (_) => BottomNavBarCubit()),
-        BlocProvider(create: (_) => BadgeCountCubit()),
-      ],
-      child: MaterialApp(
-        home: BottomNavScaffold(
-          navBarItems: navBarItems,
-          pages: [HomePage(), NotificationsPage(), SettingsPage()],
-        ),
-      ),
-    );
-  }
-}
+final pages = [
+  HomePage(),
+  AlertsPage(),
+  SettingsPage(),
+];
 ```
 
-### Updating Badge Count:
+### 3. Wrap Your App with BlocProviders
+
 ```dart
-context.read<BadgeCountCubit>().updateBadgeCount('notifications', 5);
+MultiBlocProvider(
+  providers: [
+    BlocProvider(create: (_) => BottomNavBarCubit()),
+    BlocProvider(create: (_) => BadgeCountCubit()),
+  ],
+  child: BottomNavScaffold(
+    navBarItems: items,
+    pages: pages,
+    appBar: AppBar(title: Text("Bottom Nav Example")),
+  ),
+);
 ```
 
+### 4. Update Badge Count
 
-### Key Points:
+```dart
+context.read<BadgeCountCubit>().updateBadgeCount('alerts', 3);
+```
 
-1. **Installation**: Clear steps to add the package to `pubspec.yaml`.
-2. **Usage**: Basic examples of how to use `BottomNavScaffold`, `BadgeCountCubit`, `CustomBottomNavBar`, and `AppBadge`.
-3. **Customizations**: Shows how users can customize the navigation bar and badge behavior.
-4. **License**: Mentions the MIT license (adjust if you're using a different license).
+---
 
-This should help users understand how to integrate and use the package in their own projects. Let me know if you'd like to add or change anything!
+## Components
 
+### `BottomNavScaffold`
+- Combines `Scaffold`, `BlocBuilder`, and `CustomBottomNavBar`.
+- Switches between pages automatically using `BottomNavBarCubit`.
 
-## Example
-For a complete implementation, check the `example/` directory.
+### `NavBarItem`
+- Defines each bottom nav item (icon, label, badge key).
+
+### `BadgeCountCubit`
+- Manages badge count state by label keys.
+
+### `CustomBottomNavBar`
+- Wraps `BottomNavigationBar` and shows badges using `IconWithBadge`.
+
+### `IconWithBadge`
+- Wraps an `Icon` widget with a dynamic `AppBadge`.
+
+### `AppBadge`
+- Simple, customizable red badge circle showing an integer count.
+
+---
+
+## Screenshots
+> *(Add screenshots or GIFs here for visual reference)*
+
+---
+
+## Coming Soon
+- [ ] Persistent navigation
+- [ ] Badge animations
+- [ ] Dark mode theming support
+
+---
+
+## Contributing
+
+Pull requests are welcome. Please open issues first to discuss what you would like to change.
+
+---
 
 ## License
-MIT License. See `LICENSE` file for details.
+Let me know if you'd like me to customize this further, add images, or create a working example app for GitHub!
+
 
