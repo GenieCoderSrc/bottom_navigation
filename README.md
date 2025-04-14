@@ -98,12 +98,7 @@ context.read<BadgeCountCubit>().updateBadgeCount('alerts', 3);
 ### `AppBadge`
 - Simple, customizable red badge circle showing an integer count.
 
----
 
-## Screenshots
-> *(Add screenshots or GIFs here for visual reference)*
-
----
 
 ## Coming Soon
 - [ ] Persistent navigation
