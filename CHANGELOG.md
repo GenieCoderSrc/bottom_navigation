@@ -3,6 +3,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.0.4
+### Added
+- package varsion update
+
 ## 0.0.3
 ### Added
 - ✅ Provided full customization options for colors and structure.
