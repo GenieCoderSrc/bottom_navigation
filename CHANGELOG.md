@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Implemented BlocProvider
 - Implemented Get It DI
+- Use `provider` 6.1.5
 
 
 ## 0.0.4
