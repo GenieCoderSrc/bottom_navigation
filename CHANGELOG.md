@@ -3,9 +3,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.0.5
+### Added
+- Implemented BlocProvider
+- Implemented Get It DI
+
+
 ## 0.0.4
 ### Added
-- package varsion update
+- package version update
 
 ## 0.0.3
 ### Added
