@@ -25,7 +25,7 @@ class BottomNavScaffold extends StatelessWidget {
     this.drawer,
     // this.bottomNavigationBarType,
   }) : assert(navBarItems.length == pages.length,
-  'The number of navBarItems and pages must be equal');
+            'The number of navBarItems and pages must be equal');
 
   @override
   Widget build(BuildContext context) {

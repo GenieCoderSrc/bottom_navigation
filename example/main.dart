@@ -29,8 +29,12 @@ class MyHomePage extends StatelessWidget {
     return BottomNavScaffold(
       navBarItems: [
         NavBarItem(icon: Icons.home, label: 'Home', badgeKey: 'home'),
-        NavBarItem(icon: Icons.notifications, label: 'Notifications', badgeKey: 'notifications'),
-        NavBarItem(icon: Icons.settings, label: 'Settings', badgeKey: 'settings'),
+        NavBarItem(
+            icon: Icons.notifications,
+            label: 'Notifications',
+            badgeKey: 'notifications'),
+        NavBarItem(
+            icon: Icons.settings, label: 'Settings', badgeKey: 'settings'),
       ],
       pages: [
         HomePage(),
@@ -66,7 +70,9 @@ class NotificationsPage extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            context.read<BadgeCountCubit>().updateBadgeCount('notifications', 10);
+            context
+                .read<BadgeCountCubit>()
+                .updateBadgeCount('notifications', 10);
           },
           child: Text('Set Badge Count for Notifications'),
         ),

@@ -7,4 +7,3 @@ class BottomNavBarCubit extends Cubit<int> {
     emit(index);
   }
 }
-
