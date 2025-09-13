@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class NavPageConfig {
+class NavBarScreenModel {
   /// Root builder for the page/tab
   final Widget Function(BuildContext context) builder;
 
@@ -20,7 +20,7 @@ class NavPageConfig {
   /// Return `true` to allow pop, `false` to block
   final Future<bool> Function()? onWillPop;
 
-  const NavPageConfig({
+  const NavBarScreenModel({
     required this.builder,
     this.appBar,
     this.fab,

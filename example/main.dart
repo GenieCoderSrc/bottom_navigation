@@ -1,7 +1,7 @@
 import 'package:bottom_navigation/bottom_navigation.dart';
 import 'package:bottom_navigation/data/models/badge_model.dart';
 import 'package:bottom_navigation/data/models/nav_bar_item.dart';
-import 'package:bottom_navigation/data/models/nav_page_config.dart';
+import 'package:bottom_navigation/data/models/nav_bar_screen_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -38,9 +38,9 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pages = <NavPageConfig>[
+    final pages = <NavBarScreenModel>[
       // Home tab (nested navigator)
-      NavPageConfig(
+      NavBarScreenModel(
         builder: (_) => Navigator(
           key: homeNavigatorKey,
           onGenerateRoute: (_) =>
@@ -56,7 +56,7 @@ class MyHomePage extends StatelessWidget {
       ),
 
       // Search tab (nested navigator)
-      NavPageConfig(
+      NavBarScreenModel(
         builder: (_) => Navigator(
           key: searchNavigatorKey,
           onGenerateRoute: (_) =>
@@ -67,13 +67,13 @@ class MyHomePage extends StatelessWidget {
       ),
 
       // Profile tab (normal page)
-      NavPageConfig(
+      NavBarScreenModel(
         builder: (_) => const ProfilePage(),
         appBar: AppBar(title: const Text('Profile')),
       ),
 
       // Notification tab (normal page)
-      NavPageConfig(
+      NavBarScreenModel(
         builder: (_) => NotificationsPage(),
         appBar: AppBar(title: const Text('Notification')),
       ),

@@ -48,14 +48,14 @@ final items = [
 
 ```dart
 final pages = [
-  NavPageConfig(
+  NavBarScreenModel(
     builder: (_) => HomePage(),
     appBar: AppBar(title: Text('Home')),
     fab: FloatingActionButton(onPressed: () {}),
     navigatorKey: GlobalKey<NavigatorState>(), // optional for nested navigation
   ),
-  NavPageConfig(builder: (_) => AlertsPage(), appBar: AppBar(title: Text('Alerts'))),
-  NavPageConfig(builder: (_) => SettingsPage(), appBar: AppBar(title: Text('Settings'))),
+  NavBarScreenModel(builder: (_) => AlertsPage(), appBar: AppBar(title: Text('Alerts'))),
+  NavBarScreenModel(builder: (_) => SettingsPage(), appBar: AppBar(title: Text('Settings'))),
 ];
 ```
 
@@ -93,7 +93,7 @@ context.read<BadgeCountCubit>().updateBadgeCount('alerts', 3);
 * Switches between pages automatically using `BottomNavBarCubit`.
 * Supports nested navigators per tab, FAB, AppBar, and back handling.
 
-### `NavPageConfig`
+### `NavBarScreenModel`
 
 * Defines each page/tab configuration.
 * Supports `builder`, `appBar`, `fab`, `fabLocation`, `navigatorKey`, and per-page `onWillPop`.

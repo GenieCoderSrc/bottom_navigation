@@ -1,5 +1,9 @@
 export 'config/bloc_provider/register_bottom_navigation_bloc_provider.dart';
 export 'config/dependency_injection/register_bottom_navigation_get_it_di.dart';
+export 'data/models/badge_model.dart';
+export 'data/models/bottom_nav_bar_item.dart';
+export 'data/models/nav_bar_item.dart';
+export 'data/models/nav_bar_screen_model.dart';
 export 'view_models/badge_count_cubit.dart';
 export 'view_models/bottom_nav_bar_cubit.dart';
 export 'views/screens/bottom_nav_scaffold.dart';

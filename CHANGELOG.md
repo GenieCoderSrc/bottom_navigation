@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.0.8
+
+### Sep 13, 2025
+
+### ✨ Refactor
+
+- Re-named `NavPageConfig` to `NavBarScreenModel`
+
 ## 0.0.7
 
 ### Sep 13, 2025

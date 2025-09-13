@@ -1,4 +1,4 @@
-import 'package:bottom_navigation/data/models/nav_page_config.dart';
+import 'package:bottom_navigation/data/models/nav_bar_screen_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -29,7 +29,7 @@ class BackHandler {
   static Future<void> handleBackPress({
     required BuildContext context,
     required int currentIndex,
-    required List<NavPageConfig> pages,
+    required List<NavBarScreenModel> pages,
     Future<bool> Function()? globalOnWillPop,
     bool switchToFirstTabOnBack = true,
     bool doubleBackToExit = false,

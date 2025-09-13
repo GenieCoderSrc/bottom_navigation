@@ -2,13 +2,13 @@ import 'package:bottom_navigation/data/models/nav_bar_item.dart';
 import 'package:bottom_navigation/utils/back_handler.dart';
 import 'package:bottom_navigation/view_models/bottom_nav_bar_cubit.dart';
 import 'package:bottom_navigation/views/widgets/custom_bottom_nav_bar.dart';
-import 'package:bottom_navigation/data/models/nav_page_config.dart';
+import 'package:bottom_navigation/data/models/nav_bar_screen_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BottomNavScaffold extends StatelessWidget {
   /// Pages to show in each tab
-  final List<NavPageConfig> pages;
+  final List<NavBarScreenModel> pages;
 
   /// Default nav items (used if [bottomNavigationBar] is null)
   final List<NavBarItem>? navBarItems;
@@ -71,7 +71,7 @@ class BottomNavScaffold extends StatelessWidget {
         );
 
   /// Helper to render a page (handles nested navigator)
-  Widget _buildPage(BuildContext context, NavPageConfig page) {
+  Widget _buildPage(BuildContext context, NavBarScreenModel page) {
     if (page.hasNestedNavigator) {
       return Navigator(
         key: page.navigatorKey,
