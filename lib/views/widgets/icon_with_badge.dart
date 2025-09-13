@@ -4,17 +4,23 @@ import 'package:flutter/material.dart';
 
 /// A reusable widget that combines an icon with an optional badge.
 class IconWithBadge extends StatelessWidget {
-  final IconData icon;
+  final IconData? icon;
   final int? badgeCount;
   final double iconSize;
   final Color? iconColor;
+  final Color? badgeColor;
+  final Color? badgeLabelColor;
+  final TextStyle? badgeLabelStyle;
 
   const IconWithBadge({
     super.key,
-    required this.icon,
+    this.icon,
     this.badgeCount,
     this.iconSize = 24.0,
     this.iconColor,
+    this.badgeColor,
+    this.badgeLabelColor,
+    this.badgeLabelStyle,
   });
 
   @override
@@ -27,7 +33,12 @@ class IconWithBadge extends StatelessWidget {
               Positioned(
                 top: -4,
                 right: -4,
-                child: AppBadge(count: badgeCount),
+                child: AppBadge(
+                  count: badgeCount,
+                  color: badgeColor,
+                  labelColor: badgeLabelColor,
+                  labelStyle: badgeLabelStyle,
+                ),
               ),
             ],
           )

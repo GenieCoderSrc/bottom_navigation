@@ -11,7 +11,12 @@ class CustomBottomNavBar extends StatelessWidget {
   final ValueChanged<int> onTap;
   final Color? selectedItemColor;
   final Color? unselectedItemColor;
+  final TextStyle? selectedLabelStyle;
+  final TextStyle? unselectedLabelStyle;
+  final bool? showSelectedLabels;
+  final bool? showUnselectedLabels;
   final Color? backgroundColor;
+  final BottomNavigationBarType? type;
 
   const CustomBottomNavBar({
     super.key,
@@ -21,25 +26,45 @@ class CustomBottomNavBar extends StatelessWidget {
     this.selectedItemColor,
     this.unselectedItemColor,
     this.backgroundColor,
+    this.type,
+    this.selectedLabelStyle,
+    this.unselectedLabelStyle,
+    this.showSelectedLabels,
+    this.showUnselectedLabels,
   });
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+
     return BottomNavigationBar(
       currentIndex: currentIndex,
       onTap: onTap,
-      backgroundColor:
-          backgroundColor ?? Theme.of(context).bottomAppBarTheme.color,
-      selectedItemColor: selectedItemColor ?? Theme.of(context).primaryColor,
+      backgroundColor: backgroundColor ?? theme.bottomAppBarTheme.color,
+      selectedItemColor: selectedItemColor ?? theme.primaryColor,
       unselectedItemColor: unselectedItemColor ?? Colors.grey,
-      items: items.map((item) {
+      selectedLabelStyle: selectedLabelStyle,
+      unselectedLabelStyle: unselectedLabelStyle,
+      showSelectedLabels: showSelectedLabels,
+      showUnselectedLabels: showUnselectedLabels,
+      type: type ?? BottomNavigationBarType.fixed,
+      items: items.asMap().entries.map((entry) {
+        final index = entry.key;
+        final item = entry.value;
+
         return BottomNavigationBarItem(
           icon: BlocBuilder<BadgeCountCubit, Map<String, int>>(
             builder: (context, badgeCounts) {
-              final badgeCount = badgeCounts[item.badgeKey] ?? 0;
+              final badgeCount = badgeCounts[item.badge?.badgeKey] ?? 0;
               return IconWithBadge(
                 icon: item.icon,
+                iconColor: currentIndex == index
+                    ? item.activeColor
+                    : item.inactiveColor,
                 badgeCount: badgeCount,
+                badgeColor: item.badge?.badgeColor,
+                badgeLabelColor: item.badge?.labelColor,
+                badgeLabelStyle: item.badge?.labelStyle,
               );
             },
           ),

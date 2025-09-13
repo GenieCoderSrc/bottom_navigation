@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.0.7
+
+### Sep 13, 2025
+
+### ✨ Created
+
+- ✅ Added BottomNavScaffold with `per-page` `AppBar`, `FAB`, `nested navigators`, and optional custom bottom bar.
+
+- ✅ Added `preservePageState` for tab state retention using `IndexedStack`.
+
+- ✅ Integrated PopScope with `onPopInvokedWithResult`, `double back-to-exit`, and `switch-to-first-tab` support.
+
+- ✅ Updated ``CustomBottomNavBar`` with `badges`, `per-tab colors`, `label styles`, and `BottomNavigationBarType`.
+
+- ✅ Refactored `NavBarItem` and `NavPageConfig` for better customization and page-level back handling
+
 ## 0.0.6
 
 ### Aug 22, 2025

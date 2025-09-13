@@ -1,62 +1,195 @@
+import 'package:bottom_navigation/bottom_navigation.dart';
+import 'package:bottom_navigation/data/models/badge_model.dart';
 import 'package:bottom_navigation/data/models/nav_bar_item.dart';
-import 'package:bottom_navigation/view_models/badge_count_cubit.dart';
-import 'package:bottom_navigation/view_models/bottom_nav_bar_cubit.dart';
-import 'package:bottom_navigation/views/screens/bottom_nav_scaffold.dart';
+import 'package:bottom_navigation/data/models/nav_page_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:bottom_navigation/bottom_navigation.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: BlocProvider(
-        create: (context) => BottomNavBarCubit(),
-        child: MyHomePage(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => BottomNavBarCubit()),
+        BlocProvider(create: (_) => BadgeCountCubit()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'BottomNavScaffold Example',
+        theme: ThemeData(primarySwatch: Colors.blue),
+        home: MyHomePage(),
       ),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
+  MyHomePage({super.key});
+
+  // Declare navigator keys for tabs that need nested navigation
+  final homeNavigatorKey = GlobalKey<NavigatorState>();
+  final searchNavigatorKey = GlobalKey<NavigatorState>();
+
   @override
   Widget build(BuildContext context) {
+    final pages = <NavPageConfig>[
+      // Home tab (nested navigator)
+      NavPageConfig(
+        builder: (_) => Navigator(
+          key: homeNavigatorKey,
+          onGenerateRoute: (_) =>
+              MaterialPageRoute(builder: (_) => const HomePage()),
+        ),
+        navigatorKey: homeNavigatorKey,
+        appBar: AppBar(title: const Text('Home')),
+        fab: FloatingActionButton(
+          child: const Icon(Icons.add),
+          onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('FAB clicked on Home'))),
+        ),
+      ),
+
+      // Search tab (nested navigator)
+      NavPageConfig(
+        builder: (_) => Navigator(
+          key: searchNavigatorKey,
+          onGenerateRoute: (_) =>
+              MaterialPageRoute(builder: (_) => const SearchPage()),
+        ),
+        navigatorKey: searchNavigatorKey,
+        appBar: AppBar(title: const Text('Search')),
+      ),
+
+      // Profile tab (normal page)
+      NavPageConfig(
+        builder: (_) => const ProfilePage(),
+        appBar: AppBar(title: const Text('Profile')),
+      ),
+
+      // Notification tab (normal page)
+      NavPageConfig(
+        builder: (_) => NotificationsPage(),
+        appBar: AppBar(title: const Text('Notification')),
+      ),
+    ];
+
+    final navItems = [
+      NavBarItem(
+        icon: Icons.home,
+        label: 'Home',
+        badge: BadgeModel(badgeKey: 'home', badgeColor: Colors.red),
+        activeColor: Colors.blue,
+      ),
+      NavBarItem(
+        icon: Icons.search,
+        label: 'Search',
+        badge: BadgeModel(badgeKey: 'search', badgeColor: Colors.green),
+        activeColor: Colors.green,
+      ),
+      NavBarItem(
+        icon: Icons.person,
+        label: 'Profile',
+        badge: BadgeModel(badgeKey: 'profile', badgeColor: Colors.purple),
+        activeColor: Colors.purple,
+      ),
+      NavBarItem(
+        icon: Icons.notifications,
+        label: 'Notification',
+        badge:
+            BadgeModel(badgeKey: 'notification', badgeColor: Colors.redAccent),
+        activeColor: Colors.amber,
+      ),
+    ];
+
     return BottomNavScaffold(
-      navBarItems: [
-        NavBarItem(icon: Icons.home, label: 'Home', badgeKey: 'home'),
-        NavBarItem(
-            icon: Icons.notifications,
-            label: 'Notifications',
-            badgeKey: 'notifications'),
-        NavBarItem(
-            icon: Icons.settings, label: 'Settings', badgeKey: 'settings'),
-      ],
-      pages: [
-        HomePage(),
-        NotificationsPage(),
-        SettingsPage(),
-      ],
+      pages: pages,
+      navBarItems: navItems,
+      preservePageState: true,
+      doubleBackToExit: true,
+      exitMessage: 'Press back again to exit',
     );
   }
 }
 
+// ----------------- Pages -----------------
+
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text('Home Page (Nested Navigator)'),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const HomeDetailPage()),
+              );
+            },
+            child: const Text('Go to Home Detail'),
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              context.read<BadgeCountCubit>().updateBadgeCount('home', 5);
+            },
+            child: const Text('Set Badge Count for Home'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class HomeDetailPage extends StatelessWidget {
+  const HomeDetailPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Home')),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            context.read<BadgeCountCubit>().updateBadgeCount('home', 5);
-          },
-          child: Text('Set Badge Count for Home'),
-        ),
+      appBar: AppBar(title: const Text('Home Detail')),
+      body: const Center(child: Text('Nested page inside Home')),
+    );
+  }
+}
+
+class SearchPage extends StatelessWidget {
+  const SearchPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: ElevatedButton(
+        onPressed: () {
+          context.read<BadgeCountCubit>().updateBadgeCount('search', 3);
+        },
+        child: const Text('Set Badge Count for Search'),
+      ),
+    );
+  }
+}
+
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: ElevatedButton(
+        onPressed: () {
+          context.read<BadgeCountCubit>().updateBadgeCount('profile', 0);
+        },
+        child: const Text('Clear Badge Count for Profile'),
       ),
     );
   }
@@ -75,23 +208,6 @@ class NotificationsPage extends StatelessWidget {
                 .updateBadgeCount('notifications', 10);
           },
           child: Text('Set Badge Count for Notifications'),
-        ),
-      ),
-    );
-  }
-}
-
-class SettingsPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Settings')),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            context.read<BadgeCountCubit>().updateBadgeCount('settings', 0);
-          },
-          child: Text('Clear Badge Count for Settings'),
         ),
       ),
     );
