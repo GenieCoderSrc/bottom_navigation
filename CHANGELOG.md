@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.0.9
+
+### Sep 14, 2025
+
+### ✨ Fixed
+
+- Resolved app hang issue on back press in `BackHandler`.
+
 ## 0.0.8
 
 ### Sep 13, 2025

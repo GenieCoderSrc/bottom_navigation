@@ -5,12 +5,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../view_models/bottom_nav_bar_cubit.dart';
 
 class BackHandler {
-  /// Tracks last back press time per context for double back exit
   static DateTime? _lastBackPress;
 
   /// Double back exit logic
   static Future<bool> checkDoubleBackExit(
-      BuildContext context, Duration timeout, String? message) async {
+    BuildContext context,
+    Duration timeout,
+    String? message,
+  ) async {
     final now = DateTime.now();
     if (_lastBackPress == null || now.difference(_lastBackPress!) > timeout) {
       _lastBackPress = now;
@@ -26,7 +28,7 @@ class BackHandler {
   }
 
   /// Main back handler for BottomNavScaffold
-  static Future<void> handleBackPress({
+  static Future<bool> handleBackPress({
     required BuildContext context,
     required int currentIndex,
     required List<NavBarScreenModel> pages,
@@ -41,15 +43,13 @@ class BackHandler {
     // 1. Page-level handler
     if (page.onWillPop != null) {
       final allow = await page.onWillPop!();
-      if (allow) Navigator.of(context).maybePop();
-      return;
+      return allow;
     }
 
     // 2. Global handler
     if (globalOnWillPop != null) {
       final allow = await globalOnWillPop();
-      if (allow) Navigator.of(context).maybePop();
-      return;
+      return allow;
     }
 
     // 3. Nested navigator
@@ -57,24 +57,24 @@ class BackHandler {
       final currentNavigator = page.navigatorKey!.currentState;
       if (currentNavigator != null && currentNavigator.canPop()) {
         currentNavigator.pop();
-        return;
+        return false; // handled
       }
     }
 
     // 4. Switch to first tab
     if (switchToFirstTabOnBack && currentIndex != 0) {
       context.read<BottomNavBarCubit>().updateIndex(0);
-      return;
+      return false; // handled
     }
 
     // 5. Double back to exit
     if (doubleBackToExit) {
       final allow =
           await checkDoubleBackExit(context, exitTimeout, exitMessage);
-      if (!allow) return;
+      if (!allow) return false; // wait for second back press
     }
 
-    // 6. Default → exit
-    Navigator.of(context).maybePop();
+    // 6. Default → exit app
+    return true;
   }
 }
