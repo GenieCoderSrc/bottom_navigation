@@ -2,18 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
-
-
-
-## 0.0.10
+## 0.1.0
 
 ### Jun 15, 2026
 
 ### ✨ Updated
+
 - Updated `fluttertoast: ^9.1.0`
-
-
-
 
 ## 0.0.9
 
@@ -37,15 +32,19 @@ All notable changes to this project will be documented in this file.
 
 ### ✨ Created
 
-- ✅ Added BottomNavScaffold with `per-page` `AppBar`, `FAB`, `nested navigators`, and optional custom bottom bar.
+- ✅ Added BottomNavScaffold with `per-page` `AppBar`, `FAB`, `nested navigators`, and optional
+  custom bottom bar.
 
 - ✅ Added `preservePageState` for tab state retention using `IndexedStack`.
 
-- ✅ Integrated PopScope with `onPopInvokedWithResult`, `double back-to-exit`, and `switch-to-first-tab` support.
+- ✅ Integrated PopScope with `onPopInvokedWithResult`, `double back-to-exit`, and
+  `switch-to-first-tab` support.
 
-- ✅ Updated ``CustomBottomNavBar`` with `badges`, `per-tab colors`, `label styles`, and `BottomNavigationBarType`.
+- ✅ Updated ``CustomBottomNavBar`` with `badges`, `per-tab colors`, `label styles`, and
+  `BottomNavigationBarType`.
 
-- ✅ Refactored `NavBarItem` and `NavPageConfig` for better customization and page-level back handling
+- ✅ Refactored `NavBarItem` and `NavPageConfig` for better customization and page-level back
+  handling
 
 ## 0.0.6
 
@@ -81,7 +80,8 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-- ✅ Introduced a reusable `BottomNavScaffold` widget for easy integration of a bottom navigation bar.
+- ✅ Introduced a reusable `BottomNavScaffold` widget for easy integration of a bottom navigation
+  bar.
 - ✅ Added `NavBarItem` model to define items in the bottom navigation bar.
 - ✅ Implemented `BadgeCountCubit` to manage and update badge counts dynamically.
 - ✅ Created `CustomBottomNavBar` widget with badge support for each navigation item.
