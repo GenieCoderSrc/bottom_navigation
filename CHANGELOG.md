@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.1.2
+
+### Sep 26, 2026
+
+### ✨ Updated
+
+- Updated `fluttertoast: ^10.0.0`
+
 ## 0.1.1
 
 ### Jun 20, 2026
