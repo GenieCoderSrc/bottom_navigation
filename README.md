@@ -20,6 +20,8 @@ A customizable and badge-supported bottom navigation bar for Flutter using Bloc 
 Add this to your `pubspec.yaml` file:
 
 ```yaml
+resolution: workspace
+
 dependencies:
   bottom_navigation: <latest_version>
 ```
