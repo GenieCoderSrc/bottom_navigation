@@ -1,0 +1,11 @@
+name: bottom_navigation
+description: "bottom_navigation is a Flutter package that provides a reusable and customizable bottom navigation bar with badge support. It includes dynamic badge counts, easy navigation management using `flutter_bloc`, and customizable UI components like `BottomNavScaffold` and `CustomBottomNavBar` for smooth integration into your Flutter applications."
+version: 0.1.2
+homepage: https://github.com/GenieCoderSrc/bottom_navigation
+repository: https://github.com/GenieCoderSrc/bottom_navigation
+issue_tracker: https://github.com/GenieCoderSrc/bottom_navigation/issues
+
+environment:
+  sdk: \x27>=3.6.0 <4.0.0\x27
+  resolution: workspace
+  resolution: workspace

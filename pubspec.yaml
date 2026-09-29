@@ -7,7 +7,7 @@ issue_tracker: https://github.com/GenieCoderSrc/bottom_navigation/issues
 
 environment:
   sdk: ^3.6.1
-  flutter: ">=1.17.0"
+resolution: workspace
 
 dependencies:
   flutter:
